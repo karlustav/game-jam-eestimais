@@ -19,6 +19,7 @@ public class NewBehaviourScript : MonoBehaviour
         rb2D.mass = 0.4f;
         rb2D.gravityScale = 5;
         box2D = gameObject.AddComponent<BoxCollider2D>();
+        rb2D.freezeRotation = true;
     }
 
     // Update is called once per frame
