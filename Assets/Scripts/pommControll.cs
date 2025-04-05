@@ -5,19 +5,19 @@ using UnityEngine;
 public class pommControll : MonoBehaviour{
     // paar muutujat
     public float power = 5f;
-    public float maxDistance = 50f;
-    Rigidbody2D rb;
+    public float maxDistance = 500f;
     LineRenderer lr;
     Vector2 DragStartPos;
+    Rigidbody2D rb;
 
     private void Start(){
-        rb = GetComponent<Rigidbody2D>();
-        lr = GetComponent<LineRenderer>();
-
+        lr = gameObject.AddComponent<LineRenderer>();
+        rb = gameObject.AddComponent<Rigidbody2D>();
     }
 
     
     private void Update(){
+        transform.localPosition = new Vector2(0, 0);
         if(Input.GetMouseButtonDown(0)){// 0 - vasak hiireklahv alla
             DragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // võtab alguse pos hiire kliki asukoha
 
@@ -42,9 +42,12 @@ public class pommControll : MonoBehaviour{
 
         if (Input.GetMouseButtonUp(0)){ // hiireklahv üles
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power;
-
-            rb.velocity = _velocity;
+            Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
+            GameObject pomm = new GameObject("pomm");
+            pomm.AddComponent<Rigidbody2D>();
+            pomm.AddComponent<MeshFilter>();
+            pomm.AddComponent<BoxCollider>();
+            pomm.AddComponent<MeshRenderer>();
 
             lr.positionCount = 0;
 
