@@ -11,16 +11,18 @@ public class pommControll : MonoBehaviour{
     Vector2 DragStartPos;
     Rigidbody2D rb;
 
-    private void Start(){
+    private void Start() {
         lr = gameObject.AddComponent<LineRenderer>();
         Material m = new Material(Shader.Find("Transparent/Diffuse"));
         m.color = Color.white;
         lr.material = m;
+        lr.sortingOrder = 1;
         rb = gameObject.AddComponent<Rigidbody2D>();
     }
 
     
     private void Update(){
+        
         transform.localPosition = new Vector2(0, 0);
         if(Input.GetMouseButtonDown(0)){// 0 - vasak hiireklahv alla
             DragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // võtab alguse pos hiire kliki asukoha

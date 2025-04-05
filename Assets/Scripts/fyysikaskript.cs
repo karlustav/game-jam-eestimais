@@ -5,21 +5,30 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float explosionRadius = 5.0f;
-    public float explosionStrength = 10.0f;
-    private Rigidbody2D rb2D;
+    public float explosionRadius = 10.0f;
+    public float explosionStrength = 100000.0f;
+    public Rigidbody2D rb2D;
     private BoxCollider2D box2D;
-    private float maxSpeed = 20.0f;
-    public float movesSpeed;
-    
+    private float maxSpeed = 300.0f;
+    public float movesSpeed = 1000.0f;
+    public Animator anima;
 
     void Start()
     {
-        rb2D = gameObject.AddComponent<Rigidbody2D>();
+        rb2D = gameObject.GetComponent<Rigidbody2D>();
         rb2D.mass = 0.4f;
         rb2D.gravityScale = 5;
         box2D = gameObject.AddComponent<BoxCollider2D>();
         rb2D.freezeRotation = true;
+
+        
+        Collider2D[] colliders = transform.GetComponentsInChildren<Collider2D>();
+        for (int i = 0; i < colliders.Length; i++){
+            for (int k = i+1; k < colliders.Length; k++){
+                Physics2D.IgnoreCollision(colliders[i], colliders[k]);
+            }
+            
+        }
     }
 
     // Update is called once per frame
@@ -28,10 +37,13 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) {
             print("liigun vasakule");
             rb2D.AddForce(-transform.right * movesSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            anima.Play("walk");
+
         }
         if (Input.GetKey(KeyCode.D)) {
             print("liigun paremale");
             rb2D.AddForce(transform.right * movesSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            anima.Play("walk");
         }
         if (rb2D.velocity.magnitude > maxSpeed)
         {

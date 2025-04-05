@@ -14,7 +14,7 @@ public class pommloogika : MonoBehaviour
     IEnumerator Explosion() {
         print("kohe teeb pauku");
         yield return new WaitForSeconds(plahvatusAeg);
-        GameObject.Find("mangija").SendMessage("Explode", transform);
+        GameObject.Find("puusad").SendMessage("Explode", transform);
         Destroy(gameObject);
     }
 
