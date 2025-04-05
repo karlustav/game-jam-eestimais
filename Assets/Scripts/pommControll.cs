@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class pommControll : MonoBehaviour{
     // paar muutujat
+    public GameObject pommPrefab;
     public float power = 5f;
-    public float maxDistance = 500f;
+    public float maxDistance = 50f;
     LineRenderer lr;
     Vector2 DragStartPos;
     Rigidbody2D rb;
 
     private void Start(){
         lr = gameObject.AddComponent<LineRenderer>();
+        Material m = new Material(Shader.Find("Transparent/Diffuse"));
+        m.color = Color.white;
+        lr.material = m;
         rb = gameObject.AddComponent<Rigidbody2D>();
+        Physics.IgnoreLayerCollision(8, 12);
     }
 
     
@@ -43,11 +48,10 @@ public class pommControll : MonoBehaviour{
         if (Input.GetMouseButtonUp(0)){ // hiireklahv üles
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
-            GameObject pomm = new GameObject("pomm");
-            pomm.AddComponent<Rigidbody2D>();
-            pomm.AddComponent<MeshFilter>();
-            pomm.AddComponent<BoxCollider>();
-            pomm.AddComponent<MeshRenderer>();
+            GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
+            pomm.layer = 8;
+            Rigidbody2D pommRb = pomm.GetComponent<Rigidbody2D>();
+            pommRb.AddForce(_velocity, ForceMode2D.Impulse);
 
             lr.positionCount = 0;
 
