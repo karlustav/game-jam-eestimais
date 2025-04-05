@@ -26,7 +26,7 @@ public class pommControll : MonoBehaviour{
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 _velocity = (DragEndPos - DragStartPos) * power;
 
-            Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 100);
+            Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 500);
 
             lr.positionCount = trajektoor.Length;
 
