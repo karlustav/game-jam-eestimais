@@ -49,6 +49,7 @@ public class pommControll : MonoBehaviour{
             Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
             GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
             pomm.layer = 9;
+            pomm.GetComponent<SpriteRenderer>().sortingOrder = 1;
             Rigidbody2D pommRb = pomm.GetComponent<Rigidbody2D>();
             pommRb.gravityScale = 5f;
             pommRb.mass = 0.4f;

@@ -5,9 +5,13 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float explosionRadius = 5.0f;
+    public float explosionStrength = 10.0f;
     private Rigidbody2D rb2D;
     private BoxCollider2D box2D;
     private float maxSpeed = 20.0f;
+
+    
 
     void Start()
     {
@@ -36,7 +40,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Explode(Transform t) {
         float distance = Vector2.Distance(gameObject.transform.position, t.position);
-        rb2D.AddForce((gameObject.transform.position - t.position)*10.0f/distance/distance, ForceMode2D.Impulse);
+        distance *= distance;
+        print(distance);
+        if (distance < explosionRadius) {
+            print("plahvatuse lahedal");
+            float strength = explosionStrength*(distance - explosionRadius)/(-explosionRadius);
+            rb2D.AddForce((gameObject.transform.position - t.position)*strength, ForceMode2D.Impulse);
+        }
         if (rb2D.velocity.magnitude > maxSpeed)
         {
             rb2D.velocity = rb2D.velocity.normalized * maxSpeed;
