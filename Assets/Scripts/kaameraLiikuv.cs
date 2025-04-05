@@ -16,15 +16,15 @@ public class kaameraLiikuv : MonoBehaviour
 
     void LateUpdate()
     {
+        float clampedY = Mathf.Clamp(player.position.y, minY, maxY);
+
         Vector3 desiredPosition = new Vector3(
             xCenter,
-            player.position.y,
+            clampedY,
             zOffset
         );
 
-        // Smooth movement (optional) vaatame mis saab lol
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-
         transform.position = smoothedPosition;
     }
 }
