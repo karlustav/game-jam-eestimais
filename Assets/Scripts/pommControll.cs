@@ -17,7 +17,6 @@ public class pommControll : MonoBehaviour{
         m.color = Color.white;
         lr.material = m;
         rb = gameObject.AddComponent<Rigidbody2D>();
-        Physics.IgnoreLayerCollision(8, 12);
     }
 
     
@@ -49,7 +48,7 @@ public class pommControll : MonoBehaviour{
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
             GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
-            pomm.layer = 8;
+            pomm.layer = 9;
             Rigidbody2D pommRb = pomm.GetComponent<Rigidbody2D>();
             pommRb.AddForce(_velocity, ForceMode2D.Impulse);
 
