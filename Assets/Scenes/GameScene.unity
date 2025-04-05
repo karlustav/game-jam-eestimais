@@ -2018,6 +2018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 5096005562248015876, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5708899642040006908, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -2447,8 +2451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2010435934}
   - component: {fileID: 2010435935}
-  - component: {fileID: 2010435936}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pommitaja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
