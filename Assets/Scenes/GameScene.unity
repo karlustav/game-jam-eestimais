@@ -792,7 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pommPrefab: {fileID: 7241248780843025119, guid: 28c49f44bf2f72346b951984b582fa22, type: 3}
   power: 5
-  maxDistance: 50
+  maxDistance: 5
 --- !u!1 &2083190195
 GameObject:
   m_ObjectHideFlags: 0

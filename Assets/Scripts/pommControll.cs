@@ -6,7 +6,7 @@ public class pommControll : MonoBehaviour{
     // paar muutujat
     public GameObject pommPrefab;
     public float power = 5f;
-    public float maxDistance = 50f;
+    public float maxDistance = 10f;
     LineRenderer lr;
     Vector2 DragStartPos;
     Rigidbody2D rb;
@@ -50,6 +50,8 @@ public class pommControll : MonoBehaviour{
             GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
             pomm.layer = 9;
             Rigidbody2D pommRb = pomm.GetComponent<Rigidbody2D>();
+            pommRb.gravityScale = 5f;
+            pommRb.mass = 0.4f;
             pommRb.AddForce(_velocity, ForceMode2D.Impulse);
 
             lr.positionCount = 0;

@@ -20,14 +20,23 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) {
-            print("lisan joudu");
-            rb2D.AddForce(transform.up * 10.0f - transform.right, ForceMode2D.Impulse);
+        if (Input.GetKey(KeyCode.A)) {
+            print("liigun vasakule");
+            rb2D.AddForce(-transform.right * 0.05f, ForceMode2D.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.D)) {
-            print("lisan joudu");
-            rb2D.AddForce(transform.up * 10.0f + transform.right, ForceMode2D.Impulse);
+        if (Input.GetKey(KeyCode.D)) {
+            print("liigun paremale");
+            rb2D.AddForce(transform.right * 0.05f, ForceMode2D.Impulse);
         }
+        if (rb2D.velocity.magnitude > maxSpeed)
+        {
+            rb2D.velocity = rb2D.velocity.normalized * maxSpeed;
+        }
+    }
+
+    void Explode(Transform t) {
+        float distance = Vector2.Distance(gameObject.transform.position, t.position);
+        rb2D.AddForce((gameObject.transform.position - t.position)*10.0f/distance/distance, ForceMode2D.Impulse);
         if (rb2D.velocity.magnitude > maxSpeed)
         {
             rb2D.velocity = rb2D.velocity.normalized * maxSpeed;
