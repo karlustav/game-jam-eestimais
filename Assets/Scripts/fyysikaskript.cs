@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D box2D;
     private float maxSpeed = 20.0f;
-
+    public float movesSpeed;
     
 
     void Start()
@@ -27,11 +27,11 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A)) {
             print("liigun vasakule");
-            rb2D.AddForce(-transform.right * 0.05f, ForceMode2D.Impulse);
+            rb2D.AddForce(-transform.right * movesSpeed * Time.deltaTime, ForceMode2D.Impulse);
         }
         if (Input.GetKey(KeyCode.D)) {
             print("liigun paremale");
-            rb2D.AddForce(transform.right * 0.05f, ForceMode2D.Impulse);
+            rb2D.AddForce(transform.right * movesSpeed * Time.deltaTime, ForceMode2D.Impulse);
         }
         if (rb2D.velocity.magnitude > maxSpeed)
         {
