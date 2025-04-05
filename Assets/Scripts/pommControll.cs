@@ -5,6 +5,7 @@ using UnityEngine;
 public class pommControll : MonoBehaviour{
     // paar muutujat
     public float power = 5f;
+    public float maxDistance = 50f;
     Rigidbody2D rb;
     LineRenderer lr;
     Vector2 DragStartPos;
@@ -24,7 +25,7 @@ public class pommControll : MonoBehaviour{
 
         if (Input.GetMouseButton(0)){ // draggimise ajal
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 _velocity = (DragEndPos - DragStartPos) * power;
+            Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
 
             Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 500);
 
@@ -41,7 +42,7 @@ public class pommControll : MonoBehaviour{
 
         if (Input.GetMouseButtonUp(0)){ // hiireklahv üles
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 _velocity = (DragEndPos - DragStartPos) * power;
+            Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power;
 
             rb.velocity = _velocity;
 
