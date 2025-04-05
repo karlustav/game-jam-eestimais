@@ -23,42 +23,47 @@ public class pommControll : MonoBehaviour{
     
     private void Update(){
         
-        transform.localPosition = new Vector2(0, 0);
-        if(Input.GetMouseButtonDown(0)){// 0 - vasak hiireklahv alla
-            DragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // võtab alguse pos hiire kliki asukoha
+        if (Time.timeScale != 0){
 
-        }
+    
 
-        if (Input.GetMouseButton(0)){ // draggimise ajal
-            Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
+            transform.localPosition = new Vector2(0, 0);
+            if(Input.GetMouseButtonDown(0)){// 0 - vasak hiireklahv alla
+                DragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // võtab alguse pos hiire kliki asukoha
 
-            Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 400);
-
-            lr.positionCount = trajektoor.Length;
-
-            Vector3[] positions = new Vector3[trajektoor.Length];
-            for (int i = 0; i < positions.Length; i++){
-                positions[i] = trajektoor[i];
             }
 
-            lr.SetPositions(positions);
+            if (Input.GetMouseButton(0)){ // draggimise ajal
+                Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
 
-        }
+                Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 400);
 
-        if (Input.GetMouseButtonUp(0)){ // hiireklahv üles
-            Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
-            GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
-            pomm.layer = 9;
-            pomm.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            Rigidbody2D pommRb = pomm.GetComponent<Rigidbody2D>();
-            pommRb.gravityScale = 5f;
-            pommRb.mass = 0.4f;
-            pommRb.AddForce(_velocity, ForceMode2D.Impulse);
+                lr.positionCount = trajektoor.Length;
 
-            lr.positionCount = 0;
+                Vector3[] positions = new Vector3[trajektoor.Length];
+                for (int i = 0; i < positions.Length; i++){
+                    positions[i] = trajektoor[i];
+                }
 
+                lr.SetPositions(positions);
+
+            }
+
+            if (Input.GetMouseButtonUp(0)){ // hiireklahv üles
+                Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
+                GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
+                pomm.layer = 9;
+                pomm.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                Rigidbody2D pommRb = pomm.GetComponent<Rigidbody2D>();
+                pommRb.gravityScale = 5f;
+                pommRb.mass = 0.4f;
+                pommRb.AddForce(_velocity, ForceMode2D.Impulse);
+
+                lr.positionCount = 0;
+
+            }
         }
     
     }

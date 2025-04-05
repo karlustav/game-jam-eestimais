@@ -10,11 +10,13 @@ public class pausiNupp : MonoBehaviour
     public void ClosePanel()
     {
         panelToShow.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void OpenPanel()
     {
         panelToShow.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void toggleFullscreen()
