@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +12,10 @@ public class pommControll : MonoBehaviour{
     Rigidbody2D rb;
 
     private void Start() {
-        lr = gameObject.AddComponent<LineRenderer>();
-        Material m = new Material(Shader.Find("Transparent/Diffuse"));
-        m.color = Color.white;
-        lr.material = m;
+        lr = GetComponent<LineRenderer>();
+        //Material m = new Material(Shader.Find("Transparent/Diffuse"));
+        //m.color = Color.white;
+        //lr.material = m;
         lr.sortingOrder = 1;
         rb = gameObject.AddComponent<Rigidbody2D>();
     }
@@ -33,12 +33,12 @@ public class pommControll : MonoBehaviour{
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
 
-            Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 500);
+            Vector2[] trajektoor = Plot(rb, (Vector2)transform.position, _velocity, 400);
 
             lr.positionCount = trajektoor.Length;
 
             Vector3[] positions = new Vector3[trajektoor.Length];
-            for (int i = 0; i < trajektoor.Length; i++){
+            for (int i = 0; i < positions.Length; i++){
                 positions[i] = trajektoor[i];
             }
 
