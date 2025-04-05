@@ -171,3 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2268916b8b8d174aad853f45c0bbc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plahvatusAeg: 0.5

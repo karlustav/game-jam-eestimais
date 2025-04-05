@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pommloogika : MonoBehaviour
+public class StaticBomb : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float plahvatusAeg = 0.5f;
-    void Start()
-    {
-        print("hakkab pauku tegema");
-        StartCoroutine(Explosion());
-    }
+    public float plahvatusAeg = 5.0f;
     IEnumerator Explosion() {
         print("kohe teeb pauku");
         yield return new WaitForSeconds(plahvatusAeg);
         GameObject.Find("mangija").SendMessage("Explode", transform);
-        Destroy(gameObject);
+    }
+
+    void Start()
+    {
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        print("hakkab pauku tegema");
+        StartCoroutine(Explosion());
     }
 }
