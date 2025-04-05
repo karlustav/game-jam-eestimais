@@ -20,6 +20,6 @@ public class mainMenu : MonoBehaviour
     public void onPlayButtonClicked()
     {
         Debug.Log("Play button clicked");
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("GameScene");
     }
 }
