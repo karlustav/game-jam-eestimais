@@ -1808,7 +1808,13 @@ MonoBehaviour:
   explosionStrength: 180
   rb2D: {fileID: 0}
   movesSpeed: 200
+  airControlMultiplier: 0.2
   anima: {fileID: 1453705661}
+  groundCheck: {fileID: 0}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1436594333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +1949,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3887858131317404973, guid: 7dbd4a17aedfa49ada43f7d04f86abbf, type: 3}
   m_PrefabInstance: {fileID: 1612607808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1439213297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5096005562248015876, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
+  m_PrefabInstance: {fileID: 1453705658}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1453705658
 PrefabInstance:
@@ -2093,6 +2104,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2010435934}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5096005562248015876, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1453705663}
     - targetCorrespondingSourceObject: {fileID: 416297035011164441, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1406624810}
@@ -2102,6 +2116,18 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2677017388232543377, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
   m_PrefabInstance: {fileID: 1453705658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1453705663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439213297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07848be01c004fca83c092553d4f876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1484106616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3887858131317404973, guid: 7dbd4a17aedfa49ada43f7d04f86abbf, type: 3}

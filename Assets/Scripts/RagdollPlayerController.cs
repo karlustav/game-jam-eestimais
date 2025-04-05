@@ -7,6 +7,7 @@ public class RagdollPlayerController : MonoBehaviour
     public Animator animator;
     public float playerSpeed = 10f;
     public float maxSpeed = 20f;
+    public float airControlMultiplier = 0.4f; // ⬅️ New: controls how slow movement is in air
     public float explosionRadius = 5.0f;
     public float explosionStrength = 10.0f;
 
@@ -14,16 +15,19 @@ public class RagdollPlayerController : MonoBehaviour
     public float bombPower = 5f;
     public float maxBombDistance = 10f;
 
+    public Transform groundCheck; // ⬅️ New: assign in Inspector or create at runtime
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
+    private bool isGrounded;
     private LineRenderer lineRenderer;
     private Vector2 dragStartPos;
     private List<Rigidbody2D> ragdollRigidbodies = new List<Rigidbody2D>();
 
     void Start()
     {
-        // Collect all Rigidbody2D components for ragdoll parts
         ragdollRigidbodies.AddRange(GetComponentsInChildren<Rigidbody2D>());
 
-        // Disable collisions between ragdoll parts
         Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -33,17 +37,30 @@ public class RagdollPlayerController : MonoBehaviour
             }
         }
 
-        // Set up LineRenderer for bomb trajectory
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         Material m = new Material(Shader.Find("Transparent/Diffuse"));
         m.color = Color.white;
         lineRenderer.material = m;
+
+        if (groundCheck == null)
+        {
+            GameObject gc = new GameObject("GroundCheck");
+            gc.transform.parent = transform;
+            gc.transform.localPosition = new Vector3(0, -0.5f, 0); // Adjust to bottom of ragdoll
+            groundCheck = gc.transform;
+        }
     }
 
     void Update()
     {
+        CheckGrounded();
         HandleMovement();
         HandleBombThrowing();
+    }
+
+    void CheckGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
     void HandleMovement()
@@ -52,18 +69,14 @@ public class RagdollPlayerController : MonoBehaviour
 
         if (horizontal != 0)
         {
-            if (horizontal > 0)
-            {
-                animator.Play("walk");
-            }
-            else
-            {
-                animator.Play("walkback");
-            }
+            animator.Play(horizontal > 0 ? "walk" : "walkback");
+
+            float currentSpeed = isGrounded ? playerSpeed : playerSpeed * airControlMultiplier;
 
             foreach (var rb in ragdollRigidbodies)
             {
-                rb.AddForce(Vector2.right * horizontal * playerSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.right * horizontal * currentSpeed * Time.deltaTime, ForceMode2D.Impulse);
+
                 if (rb.velocity.magnitude > maxSpeed)
                     rb.velocity = rb.velocity.normalized * maxSpeed;
             }
