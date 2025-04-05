@@ -1804,17 +1804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039c150647b52e44b86b74e8ec4b5bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 10
+  explosionRadius: 5
   explosionStrength: 180
   rb2D: {fileID: 0}
-  movesSpeed: 200
-  airControlMultiplier: 0.2
+  maxSpeed: 300
+  movesSpeed: 60
   anima: {fileID: 1453705661}
-  groundCheck: {fileID: 0}
-  groundCheckRadius: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1436594333
 GameObject:
   m_ObjectHideFlags: 0

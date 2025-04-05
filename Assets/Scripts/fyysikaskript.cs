@@ -5,12 +5,12 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float explosionRadius = 10.0f;
-    public float explosionStrength = 100000.0f;
+    public float explosionRadius = 5.0f;
+    public float explosionStrength = 180.0f;
     public Rigidbody2D rb2D;
     private BoxCollider2D box2D;
     public float maxSpeed = 300.0f;
-    public float movesSpeed = 250.0f;
+    public float movesSpeed = 60.0f;
     public Animator anima;
 
     void Start()
