@@ -16,7 +16,7 @@ public class pommControll : MonoBehaviour{
         //Material m = new Material(Shader.Find("Transparent/Diffuse"));
         //m.color = Color.white;
         //lr.material = m;
-        lr.sortingOrder = 1;
+        lr.sortingOrder = 5;
         rb = gameObject.AddComponent<Rigidbody2D>();
     }
 
