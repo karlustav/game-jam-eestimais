@@ -26,6 +26,7 @@ public class pausiNupp : MonoBehaviour
     {
         Debug.Log("Home button clicked");
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 
 }
