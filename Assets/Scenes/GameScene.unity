@@ -12216,7 +12216,7 @@ MonoBehaviour:
   movesSpeed: 60
   anima: {fileID: 1453705661}
   dustEffect: {fileID: 1494486264030393551, guid: 2037d88d696524189afea25698e55712, type: 3}
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 167341719}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
