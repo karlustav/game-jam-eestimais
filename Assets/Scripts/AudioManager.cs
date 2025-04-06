@@ -1,16 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-
     public AudioSource audioSource;
-    public AudioClip[] levelMusic; // Assign music clips for each level here
+    public AudioClip[] levelMusic;
+    public float fadeDuration = 1.5f;
 
-    public void Start() 
-    {
-        PlayLevelMusic(0);
-    }
+    private bool hasPlayedFirstTrack = false;
 
     private void Awake()
     {
@@ -18,6 +16,8 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            audioSource.volume = 1f;
+            PlayLevelMusic(0); // Start first track immediately
         }
         else
         {
@@ -25,12 +25,47 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayLevelMusic(int levelIndex)
+    public void PlayLevelMusic(int index)
     {
-        if (levelIndex < levelMusic.Length && levelMusic[levelIndex] != null)
+        if (index < levelMusic.Length && levelMusic[index] != null)
         {
-            audioSource.clip = levelMusic[levelIndex];
-            audioSource.Play();
+            if (!hasPlayedFirstTrack)
+            {
+                audioSource.clip = levelMusic[index];
+                audioSource.Play();
+                hasPlayedFirstTrack = true;
+            }
+            else
+            {
+                StartCoroutine(FadeToNewClip(levelMusic[index]));
+            }
         }
+    }
+
+    private IEnumerator FadeToNewClip(AudioClip newClip)
+    {
+        if (audioSource.clip == newClip) yield break; // Skip if already playing
+
+        float startVolume = audioSource.volume;
+
+        // Fade out
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.clip = newClip;
+        audioSource.Play();
+
+        // Fade in
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(0f, startVolume, t / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.volume = startVolume;
     }
 }
