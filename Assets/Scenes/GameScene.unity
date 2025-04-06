@@ -2005,9 +2005,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 267138146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 44cc3901549cbd14b92a7ca883a19a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  xCenter: 0
+  zOffset: -10
+  smoothSpeed: 0.5
+  minY: 0
+  maxY: 100
 --- !u!114 &267138151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2059,7 +2065,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267138146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44cc3901549cbd14b92a7ca883a19a2d, type: 3}
   m_Name: 
