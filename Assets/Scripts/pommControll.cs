@@ -1,6 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class pommControll : MonoBehaviour{
     // paar muutujat
@@ -28,12 +29,12 @@ public class pommControll : MonoBehaviour{
     
 
             transform.localPosition = new Vector2(0, 0);
-            if(Input.GetMouseButtonDown(0)){// 0 - vasak hiireklahv alla
+            if(Input.GetMouseButtonDown(0) && !IsPointerOverUI()){// 0 - vasak hiireklahv alla
                 DragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // võtab alguse pos hiire kliki asukoha
 
             }
 
-            if (Input.GetMouseButton(0)){ // draggimise ajal
+            if (Input.GetMouseButton(0) && !IsPointerOverUI()){ // draggimise ajal
                 Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
 
@@ -50,7 +51,7 @@ public class pommControll : MonoBehaviour{
 
             }
 
-            if (Input.GetMouseButtonUp(0)){ // hiireklahv üles
+            if (Input.GetMouseButtonUp(0) && !IsPointerOverUI()){ // hiireklahv üles
                 Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 _velocity = Vector2.ClampMagnitude((DragEndPos - DragStartPos) * power, maxDistance);
                 GameObject pomm = Instantiate(pommPrefab, transform.position, pommPrefab.transform.rotation);
@@ -85,5 +86,9 @@ public class pommControll : MonoBehaviour{
         return results;
 
     }
+
+    private bool IsPointerOverUI() {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+}
 }
  
