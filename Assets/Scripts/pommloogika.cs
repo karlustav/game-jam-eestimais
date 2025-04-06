@@ -18,33 +18,38 @@ public class pommloogika : MonoBehaviour
         var sprite3 = Resources.Load<Sprite>("pomm/pomm4_4");
         print("hakkab pauku tegema");
         audioSource.PlayOneShot(pauk);
-        StartCoroutine(Explosion(sprite1, sprite2, sprite3));
+        StartCoroutine(Explosion(sprite1, sprite2, sprite3, pauk.length));
     }
-    IEnumerator Explosion(Sprite s1, Sprite s2, Sprite s3) {
+    IEnumerator Explosion(Sprite s1, Sprite s2, Sprite s3, float soundDuration) {
         print("kohe teeb pauku");
         yield return new WaitForSeconds(plahvatusAeg);
         GameObject.Find("puusad").SendMessage("Explode", transform);
-        StartCoroutine(Frame1(s1, s2, s3));
+        StartCoroutine(Frame1(s1, s2, s3, soundDuration));
     }
 
-    IEnumerator Frame1(Sprite s1, Sprite s2, Sprite s3) {
-        // Change to the first sprite
+    IEnumerator Frame1(Sprite s1, Sprite s2, Sprite s3, float soundDuration) {
         print("1");
         gameObject.GetComponent<SpriteRenderer>().sprite = s1;
         yield return new WaitForSeconds(animatsiooniKiirus);
 
         print("2");
-        // Change to the second sprite
         gameObject.GetComponent<SpriteRenderer>().sprite = s2;
         yield return new WaitForSeconds(animatsiooniKiirus);
 
         print("3");
-        // Change to the third sprite
         gameObject.GetComponent<SpriteRenderer>().sprite = s3;
-        yield return new WaitForSeconds(2*animatsiooniKiirus);
+        yield return new WaitForSeconds(2 * animatsiooniKiirus);
+
+        // ❌ Instead of destroying right away, hide the sprite visually
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        // 🕒 Wait for the sound to finish before destruction
+        yield return new WaitForSeconds(soundDuration);
+
         print("kill");
         Destroy(gameObject);
     }
+
 
     // Update is called once per frame
     void Update()
