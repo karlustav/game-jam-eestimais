@@ -78,8 +78,8 @@ public class RepeatingTimeBomb : MonoBehaviour
         Debug.Log("Bomb exploded!");
 
         // Play the explosion sound
-        if (explosionSound != null)
-            audioSource.PlayOneShot(explosionSound);
+        //if (explosionSound != null)
+        //    audioSource.PlayOneShot(explosionSound);
 
         // Affect the player as in the original bomb:
         GameObject.Find("puusad").SendMessage("Explode", transform);
