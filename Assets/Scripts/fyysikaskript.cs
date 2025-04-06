@@ -13,6 +13,15 @@ public class NewBehaviourScript : MonoBehaviour
     public float movesSpeed = 60.0f;
     public Animator anima;
 
+    public ParticleSystem dustEffect;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    public float groundCheckRadius = 0.2f;
+
+    private bool isGrounded;
+    private bool wasGroundedLastFrame;
+
+
     void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
@@ -49,6 +58,14 @@ public class NewBehaviourScript : MonoBehaviour
         {
             rb2D.velocity = rb2D.velocity.normalized * maxSpeed;
         }
+
+        wasGroundedLastFrame = isGrounded;
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (!wasGroundedLastFrame && isGrounded)
+        {
+            SpawnDust();
+        }
     }
 
     void Explode(Transform t) {
@@ -63,6 +80,16 @@ public class NewBehaviourScript : MonoBehaviour
         if (rb2D.velocity.magnitude > maxSpeed)
         {
             rb2D.velocity = rb2D.velocity.normalized * maxSpeed;
+        }
+    }
+
+    void SpawnDust()
+    {
+        if (dustEffect != null)
+        {
+            ParticleSystem fx = Instantiate(dustEffect, groundCheck.position, Quaternion.identity);
+            fx.Play();
+            Destroy(fx.gameObject, fx.main.duration + fx.main.startLifetime.constantMax);
         }
     }
 }
