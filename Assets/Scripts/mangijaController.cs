@@ -30,13 +30,14 @@ public class mangijaController : MonoBehaviour
                 anima.Play("walk");
                 rb.AddForce(Vector2.right * playerSpeed * Time.deltaTime);
             }
-            else{
+            else if(Input.GetAxisRaw("Horizontal") < 0){
                 anima.Play("walkback");
                 rb.AddForce(Vector2.left * playerSpeed * Time.deltaTime);
             }
-        }
-        else{
-            anima.Play("idle");
+            else{
+                anima.Play("idle");
+
+            }
         }
         
     }
