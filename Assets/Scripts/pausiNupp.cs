@@ -1,33 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pausiNupp : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject panelToShow;
-
-    public void ClosePanel()
-    {
-        panelToShow.SetActive(false);
-        Time.timeScale = 1f;
-    }
+    public GameObject pauseButton; // <-- Add this in the Inspector
 
     public void OpenPanel()
     {
         panelToShow.SetActive(true);
-        Time.timeScale = 0f;
+        pauseButton.SetActive(false); // Hide pause button
+        Time.timeScale = 0f; // Pause game
     }
 
-    public void toggleFullscreen()
+    public void ClosePanel()
     {
-        if (Screen.fullScreen == false)
-        {
-            Screen.fullScreen = true;
-        }
-        else
-        {
-            Screen.fullScreen = false;
-        }
+        panelToShow.SetActive(false);
+        pauseButton.SetActive(true); // Show pause button
+        Time.timeScale = 1f; // Resume game
     }
+
+    public void onHomeButtonClicked()
+    {
+        Debug.Log("Home button clicked");
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
