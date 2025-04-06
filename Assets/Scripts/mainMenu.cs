@@ -22,4 +22,15 @@ public class mainMenu : MonoBehaviour
         Debug.Log("Play button clicked");
         SceneManager.LoadScene("GameScene");
     }
+
+    public void onQuitButtonClicked()
+    {
+        Debug.Log("Quit button clicked");
+        Application.Quit();
+
+        // This line is just for testing in the editor
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }
