@@ -5372,11 +5372,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3887858131317404973, guid: 7dbd4a17aedfa49ada43f7d04f86abbf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 9.461656
+      value: 8.407301
       objectReference: {fileID: 0}
     - target: {fileID: 3887858131317404973, guid: 7dbd4a17aedfa49ada43f7d04f86abbf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1723
+      value: 0.3547
       objectReference: {fileID: 0}
     - target: {fileID: 3887858131317404973, guid: 7dbd4a17aedfa49ada43f7d04f86abbf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12596,7 +12596,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.09899998, y: -2.5609999}
+  m_ConnectedAnchor: {x: 0.09899998, y: 4.779}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -13291,7 +13291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8779575579363901221, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3
+      value: 6.04
       objectReference: {fileID: 0}
     - target: {fileID: 8779575579363901221, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
       propertyPath: m_LocalPosition.z
