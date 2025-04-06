@@ -5568,7 +5568,7 @@ MonoBehaviour:
   levelMusic:
   - {fileID: 8300000, guid: 02cb21531850e5f4eb67d5e5523624ae, type: 3}
   - {fileID: 8300000, guid: df42810a7044e4ee797ec6c0c5862fae, type: 3}
-  - {fileID: 8300000, guid: 4d846316d179945afb268d61cc54316a, type: 3}
+  - {fileID: 8300000, guid: 80fbc0160dd0d44ba8d68888de7271c1, type: 3}
   - {fileID: 8300000, guid: 28468bf3ee6c54340b13247d90fc4a5b, type: 3}
   - {fileID: 8300000, guid: 17dee717b16844ba7b374d7e266f39bb, type: 3}
   - {fileID: 8300000, guid: b49aba8b93aa44eedb902b4ebc515a63, type: 3}
@@ -9837,6 +9837,18 @@ PrefabInstance:
     - target: {fileID: 4886703235183231445, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886703235183231445, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
+      propertyPath: m_Color.b
+      value: 0.18525274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886703235183231445, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
+      propertyPath: m_Color.g
+      value: 0.18525274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886703235183231445, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
+      propertyPath: m_Color.r
+      value: 0.21698111
       objectReference: {fileID: 0}
     - target: {fileID: 4886703235183231445, guid: 585c93eae00416f4ba58d4aae2892941, type: 3}
       propertyPath: m_SortingOrder
