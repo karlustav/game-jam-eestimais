@@ -7,6 +7,11 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] levelMusic; // Assign music clips for each level here
 
+    public void Start() 
+    {
+        PlayLevelMusic(0);
+    }
+
     private void Awake()
     {
         if (Instance == null)
